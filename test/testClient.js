@@ -82,7 +82,7 @@ describe('lib/client.js', function(){
     });
   });
 
-  it("should get private on getHash", function(done){
+  it("should get private on getPrivatePair", function(done){
     var retVal = { something: 1 };
     handler = function(req, res, next) {
       expect(req.path()).equals('/userId/private/hashName');
@@ -91,7 +91,7 @@ describe('lib/client.js', function(){
       res.send(200, retVal);
       next();
     };
-    client.getHash('userId', 'hashName', '1234', function(err, res){
+    client.getPrivatePair('userId', 'hashName', '1234', function(err, res){
       expect(err).to.not.exist;
       expect(res).deep.equals(retVal);
       done();
