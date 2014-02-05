@@ -1,9 +1,11 @@
 {
   "name": "seagull-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Client library for seagull, Tidepool's user metadata service.",
   "keywords": [
-    "tidepool", "seagull", "user metadata"
+    "tidepool",
+    "seagull",
+    "user metadata"
   ],
   "homepage": "https://github.com/tidepool-org/seagull-client",
   "bugs": "https://github.com/tidepool-org/seagull-client/issues",
@@ -13,8 +15,7 @@
     "email": "cheddar@tidepool.org",
     "url": "https://github.com/cheddar"
   },
-  "contributors": [
-  ],
+  "contributors": [],
   "files": [
     "lib",
     "index.js"
