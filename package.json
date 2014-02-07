@@ -1,6 +1,6 @@
 {
-  "name": "seagull-client",
-  "version": "0.0.1",
+  "name": "tidepool-seagull-client",
+  "version": "0.0.0",
   "description": "Client library for seagull, Tidepool's user metadata service.",
   "keywords": [
     "tidepool",
