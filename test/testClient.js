@@ -15,16 +15,24 @@
   == BSD2 LICENSE ==
 */
 
+var fs = require('fs');
+
 var expect = require('salinity').expect;
 
 describe('lib/client.js', function(){
-  var port = 21001
+  var port = 21001;
   var hostGetter = {
-    get: function() { return [{ protocol: 'http', host: 'localhost:' + port }]; }
+    get: function() { return [{ protocol: 'https', host: 'localhost:' + port }]; }
   };
   var client = require('../lib/client.js')(hostGetter);
 
-  var server = require('restify').createServer({ name: 'test' });
+  var server = require('restify').createServer(
+    {
+      name: 'test',
+      key: fs.readFileSync('./test/resources/private.pem'),
+      cert: fs.readFileSync('./test/resources/cert.pem')
+    }
+  );
   var handler = null;
 
   before(function(done){
@@ -39,6 +47,7 @@ describe('lib/client.js', function(){
       throw err;
     });
     server.listen(port, function(err){
+      console.log('Test server listening on port', port);
       done();
     });
   });
@@ -60,7 +69,9 @@ describe('lib/client.js', function(){
       res.send(200, retVal);
       next();
     };
+    console.log('test!');
     client.getCollection('userId', 'aCollection', '1234', function(err, res){
+      console.log('yay!');
       expect(err).to.not.exist;
       expect(res).deep.equals(retVal);
       done();
