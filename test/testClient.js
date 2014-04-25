@@ -24,7 +24,9 @@ describe('lib/client.js', function(){
   var hostGetter = {
     get: function() { return [{ protocol: 'https', host: 'localhost:' + port }]; }
   };
-  var client = require('../lib/client.js')(hostGetter);
+
+  var httpClient = require('amoeba').httpClient();
+  var client = require('../lib/client.js')(hostGetter, {}, httpClient);
 
   var server = require('restify').createServer(
     {
@@ -94,6 +96,21 @@ describe('lib/client.js', function(){
     });
   });
 
+  it("should return null on 404 from getProfile", function(done){
+    handler = function(req, res, next) {
+      expect(req.path()).equals('/userId/profile');
+      expect(req.method).equals('GET');
+      expect(req.headers).to.have.property('x-tidepool-session-token').that.equals('1234');
+      res.send(404);
+      next();
+    };
+    client.getProfile('userId', '1234', function(err, res){
+      expect(err).to.not.exist;
+      expect(res).to.not.exist;
+      done();
+    });
+  });
+
   it("should get groups on getGroups", function(done){
     var retVal = { something: 1 };
     handler = function(req, res, next) {
@@ -122,6 +139,21 @@ describe('lib/client.js', function(){
     client.getPrivatePair('userId', 'hashName', '1234', function(err, res){
       expect(err).to.not.exist;
       expect(res).deep.equals(retVal);
+      done();
+    });
+  });
+
+  it("should return null if 404 on getPrivatePair", function(done){
+    handler = function(req, res, next) {
+      expect(req.path()).equals('/userId/private/hashName');
+      expect(req.method).equals('GET');
+      expect(req.headers).to.have.property('x-tidepool-session-token').that.equals('1234');
+      res.send(404);
+      next();
+    };
+    client.getPrivatePair('userId', 'hashName', '1234', function(err, res){
+      expect(err).to.not.exist;
+      expect(res).to.not.exist;
       done();
     });
   });
