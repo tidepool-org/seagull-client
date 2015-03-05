@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "mocha": "1.17.1",
-    "restify": "2.6.0",
+    "restify": "2.8.5",
     "salinity": "0.0.7"
   }
 }
