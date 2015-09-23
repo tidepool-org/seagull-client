@@ -30,7 +30,7 @@
   "devDependencies": {
     "mocha": "2.1.0",
     "restify": "2.8.5",
-    "salinity": "0.0.7"
+    "salinity": "0.0.8"
   },
   "scripts": {}
 }
