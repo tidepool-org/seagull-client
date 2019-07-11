@@ -1,6 +1,6 @@
 {
   "name": "tidepool-seagull-client",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Client library for seagull, Tidepool's user metadata service.",
   "keywords": [
     "tidepool",
@@ -23,7 +23,7 @@
   "main": "index.js",
   "repository": "https://github.com/tidepool-org/seagull-client.git",
   "dependencies": {
-    "amoeba": "0.5.0",
+    "amoeba": "0.6.0",
     "lodash": "4.17.11",
     "request": "2.88.0"
   },
