@@ -27,7 +27,7 @@
     "request": "2.88.0"
   },
   "devDependencies": {
-    "mocha": "6.1.4",
+    "mocha": "10.2.0",
     "restify": "8.3.3",
     "salinity": "0.0.8"
   },
