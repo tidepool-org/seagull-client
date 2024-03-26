@@ -8,9 +8,9 @@ Client library for interacting with seagull, Tidepool's user metadata service
 ## Setup
 ```require('seagull-client')(config, hostGetter, request);```
 
-  * ```config``` -- an object containing configuration parameters
   * ```hostGetter``` -- an object from hakken
-  * ```request``` -- (optional) -- the result of require('request'). If not supplied a new one will be created.
+  * ```config``` -- an object containing configuration parameters
+  * ```request``` -- see amoeba httpClient
   
   Generates an object with the members listed below.
 

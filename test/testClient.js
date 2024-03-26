@@ -15,12 +15,16 @@
   == BSD2 LICENSE ==
 */
 
+// jshint -W030
+
+'use strict';
+
 var fs = require('fs');
 
 var expect = require('salinity').expect;
 
 describe('lib/client.js', function(){
-  var port = 21001;
+  var port = 21002;
   var hostGetter = {
     get: function() { return [{ protocol: 'https', host: 'localhost:' + port }]; }
   };
@@ -41,10 +45,10 @@ describe('lib/client.js', function(){
     var theFn = function (req, res, next) {
       handler(req, res, next);
     };
-    server.get(/.*/, theFn);
-    server.post(/.*/, theFn);
-    server.put(/.*/, theFn);
-    server.del(/.*/, theFn);
+    server.get('/*', theFn);
+    server.post('/*', theFn);
+    server.put('/*', theFn);
+    server.del('/*', theFn);
     server.on('uncaughtException', function(req, res, route, err){
       throw err;
     });
@@ -62,7 +66,7 @@ describe('lib/client.js', function(){
     handler = null;
   });
 
-  it("should get whatever collection I ask for", function(done){
+  it('should get whatever collection I ask for', function(done){
     var retVal = { something: 1 };
     handler = function(req, res, next) {
       expect(req.path()).equals('/userId/aCollection');
@@ -80,7 +84,7 @@ describe('lib/client.js', function(){
     });
   });
 
-  it("should get profile on getProfile", function(done){
+  it('should get profile on getProfile', function(done){
     var retVal = { something: 1 };
     handler = function(req, res, next) {
       expect(req.path()).equals('/userId/profile');
@@ -96,7 +100,7 @@ describe('lib/client.js', function(){
     });
   });
 
-  it("should return null on 404 from getProfile", function(done){
+  it('should return null on 404 from getProfile', function(done){
     handler = function(req, res, next) {
       expect(req.path()).equals('/userId/profile');
       expect(req.method).equals('GET');
@@ -111,7 +115,7 @@ describe('lib/client.js', function(){
     });
   });
 
-  it("should get groups on getGroups", function(done){
+  it('should get groups on getGroups', function(done){
     var retVal = { something: 1 };
     handler = function(req, res, next) {
       expect(req.path()).equals('/userId/groups');
@@ -127,7 +131,7 @@ describe('lib/client.js', function(){
     });
   });
 
-  it("should get private on getPrivatePair", function(done){
+  it('should get private on getPrivatePair', function(done){
     var retVal = { something: 1 };
     handler = function(req, res, next) {
       expect(req.path()).equals('/userId/private/hashName');
@@ -143,7 +147,7 @@ describe('lib/client.js', function(){
     });
   });
 
-  it("should return null if 404 on getPrivatePair", function(done){
+  it('should return null if 404 on getPrivatePair', function(done){
     handler = function(req, res, next) {
       expect(req.path()).equals('/userId/private/hashName');
       expect(req.method).equals('GET');
