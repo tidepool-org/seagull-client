@@ -1,6 +1,6 @@
 {
   "name": "tidepool-seagull-client",
-  "version": "0.1.13",
+  "version": "0.1.14-alpha.1",
   "description": "Client library for seagull, Tidepool's user metadata service.",
   "keywords": [
     "tidepool",
@@ -26,16 +26,21 @@
     "url": "git+https://github.com/tidepool-org/seagull-client.git"
   },
   "dependencies": {
-    "amoeba": "1.2.4"
+    "amoeba": "^1.2.5-alpha.2"
   },
   "devDependencies": {
-    "jshint": "^2.12.0",
-    "mocha": "^10.3.0",
+    "jshint": "^2.13.6",
+    "mocha": "^11.7.6",
     "restify": "^11.1.0",
-    "salinity": "0.0.11"
+    "salinity": "^0.0.12-alpha.2"
   },
   "overrides": {
-    "serialize-javascript@>=6.0.0 <6.0.2": "6.0.2"
+    "brace-expansion@>=2.0.0 <2.1.1": "2.1.1",
+    "diff@>=6.0.0 <8.0.3": "8.0.3",
+    "lodash@<=4.17.23": "4.18.1",
+    "minimatch@<=3.1.3": "3.1.5",
+    "serialize-javascript@<=7.0.4": "7.0.6",
+    "uuid@<14.0.1": "14.0.1"
   },
   "scripts": {
     "lint": "jshint lib test",
